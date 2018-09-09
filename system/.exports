@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING='UTF-8';
+
+# Increase bash history size. Allow 32³ entries; the default is 500.
+export HISTSIZE='32768';
+export HISTFILESIZE="${HISTSIZE}";
+
+# Ignore duplicates commands in the history log
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
+
+# Add the date to the historylog
+export HISTTIMEFORMAT=${HISTTIMEFORMAT:-"%Y-%m-%d %H:%M:%S"}
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER=${MANPAGER:-"less -X"}
+
+DEV_WORKSPACE_TOOLS=~/Development/tools
+TSURU_HOME=`cd $DEV_WORKSPACE_TOOLS && pwd`/tsuru
+JMETER_HOME=`cd $DEV_WORKSPACE_TOOLS && pwd`/apache-jmeter
+
+export PATH=$PATH:${JMETER_HOME}/bin/:${TSURU_HOME}
