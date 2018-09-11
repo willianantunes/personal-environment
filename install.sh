@@ -3,21 +3,45 @@
 # Description	 : My honest install script to 
 #                  prepare my development environment
 # Author         : Willian Antunes
-# Know more at   : https://dotfiles.github.io/
+# Know more at   : https://github.com/alrra/dotfiles
+#                  https://dotfiles.github.io/
 #                  https://github.com/webpro/awesome-dotfiles
+#                  https://github.com/donnemartin/dev-setup
 #                  https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789
 #                  https://github.com/mathiasbynens/dotfiles
 #                  http://aurelio.net/shell/canivete/
 #                  https://github.com/fredcamps/dev-env
 #######################################################
 
+ask_for_sudo() { # https://github.com/alrra/dotfiles/blob/7311ef50b65495e89c7dd98fa927e5dfa5ee442b/src/os/utils.sh#L20
+
+    # Ask for the administrator password upfront.
+
+    sudo -v &> /dev/null
+
+    # Update existing `sudo` time stamp
+    # until this script has finished.
+    #
+    # https://gist.github.com/cowboy/3118588
+
+    while true; do
+        sudo -n true
+        sleep 60
+        kill -0 "$$" || exit
+    done &> /dev/null &
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+ask_for_sudo
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Base stuff
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 VENDOR="$(lsb_release -i | awk '{print $3}' | awk '{print tolower($0)}')"
 CODENAME="$(lsb_release -cs)"
-
-# Ask for the administrator password upfront
-sudo -v
 
 echo "<<<<<< Creating development workspace"
 
@@ -34,15 +58,15 @@ mkdir -p $DEV_WORKSPACE_SERVERS $DEV_WORKSPACE_TOOLS \
 
 echo "<<<<<< Including PPA in order to install non-standard packages"
 
-add-apt-repository ppa:wireshark-dev/stable
+sudo add-apt-repository -y ppa:wireshark-dev/stable
 
 echo "<<<<<< Refreshing repository index"
 
-apt-get update
+sudo apt-get update
 
 echo "<<<<<< Utility and must-have packages"
 
-apt install -y -q vim \
+sudo apt install -y -q vim \
     tree \
     gnome-disk-utility \
     wireshark \
@@ -51,14 +75,20 @@ apt install -y -q vim \
     git \
     gimp \
     inkscape \
+    gdebi-core \
     apt-transport-https ca-certificates curl software-properties-common
     
 systemManufacturer=`dmidecode -s system-manufacturer`
 
 if [[ $systemManufacturer=*"VMware"* ]] || [[ $systemManufacturer=*"VirtualBox"* ]]; then
     echo "<<< It's a VM!"
-    apt install open-vm-tools-desktop
+    sudo apt install open-vm-tools-desktop
 fi
+
+echo "<<< Chrome"
+
+curl -OL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+    sudo gdebi --n google-chrome-stable_current_amd64.deb
 
 echo "<<< Tsuru client"
 
@@ -77,7 +107,7 @@ ln -sv $TSURU_HOME $DEV_WORKSPACE_TOOLS/$TSURU_SHORTER_FILE_NAME
 
 echo "<<<<<< Java and tools depending on it"
 
-apt install -y openjdk-8-jdk \
+sudo apt install -y openjdk-8-jdk \
     openjdk-11-jdk \
     maven \
     gradle
@@ -94,9 +124,9 @@ curl -O "http://mirror.nbtelecom.com.br/apache//jmeter/binaries/${JMETER_FILE_NA
     mv $JMETER_FILE_NAME $DEV_WORKSPACE_TOOLS &&
     rm -rf "${JMETER_FILE_NAME}"*
 
-# https://askubuntu.com/a/723503    
-sed -i "s/^assistive_technologies=/#&/" /etc/java-11-openjdk/accessibility.properties
-sed -i "s/^assistive_technologies=/#&/" /etc/java-8-openjdk/accessibility.properties
+# https://askubuntu.com/a/723503
+sudo sed -i "s/^assistive_technologies=/#&/" /etc/java-11-openjdk/accessibility.properties
+sudo sed -i "s/^assistive_technologies=/#&/" /etc/java-8-openjdk/accessibility.properties
 
 ln -sv $JMETER_HOME $DEV_WORKSPACE_TOOLS/$JMETER_SHORTER_FILE_NAME
 
@@ -104,28 +134,28 @@ echo "<<<<<< Node"
 
 # https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 curl -sL https://deb.nodesource.com/setup_8.x | -E bash -
-apt-get install -y nodejs \
+sudo apt-get install -y nodejs \
     build-essential
 
 echo "<<<<<< Docker"
 
 DOCKER_COMPOSE_VERSION="1.22.0"
 
-curl -fsSL https://download.docker.com/linux/${VENDOR}/gpg | apt-key add -
-add-apt-repository \
+curl -fsSL https://download.docker.com/linux/${VENDOR}/gpg | sudo apt-key add -
+sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/${VENDOR} ${CODENAME} stable"
-apt update && apt-cache policy docker-ce &&
-    apt install docker-ce &&
-    usermod -aG docker $USER &&
-    curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose &&
-    chmod +x /usr/local/bin/docker-compose
+sudo apt update && sudo apt-cache policy docker-ce &&
+    sudo apt install -y docker-ce &&
+    sudo usermod -aG docker $USER &&
+    echo "<<< Docker Compose" &&
+    sudo curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose &&
+    sudo chmod +x /usr/local/bin/docker-compose
 
 echo "<<<<<< Dotfiles"
 
-# Bunch of symlinks
-
 ln -sfv "$DOTFILES_DIR/runcom/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
+ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
 echo "<<<<<< Removing unwanted packages"
 
