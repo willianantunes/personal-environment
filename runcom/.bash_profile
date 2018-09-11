@@ -1,6 +1,6 @@
 # Resolve DOTFILES_DIR
 
-elif [ -d "$HOME/.dotfiles" ]; then
+if [ -d "$HOME/.dotfiles" ]; then
   DOTFILES_DIR="$HOME/.dotfiles"
 else
   echo "<<<<<< Unable to find dotfiles, exiting"
@@ -9,7 +9,7 @@ fi
 
 # Source the dotfiles
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{exports}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{exports,aliases,functions,extra}; do
     [ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done
 
