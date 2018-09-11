@@ -1,14 +1,14 @@
 [user]
-  name = Willian Antunes
-  email = willian.lima.antunes@gmail.com
+    name = Willian Antunes
+    email = willian.lima.antunes@gmail.com
 
 [github]
-  user = willianantunes
+    user = willianantunes
 
 [credential]
-  # Cache the password for http-auth
-  helper = cache
+    # Cache the password for http-auth
+    helper = cache
 
 [core]
-  excludesfile = ~/.gitignore_global
-  autocrlf = input
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
