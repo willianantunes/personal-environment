@@ -11,7 +11,7 @@ export HISTFILESIZE="${HISTSIZE}";
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 
 # Add the date to the historylog
-export HISTTIMEFORMAT=${HISTTIMEFORMAT:-"%Y-%m-%d %H:%M:%S"}
+export HISTTIMEFORMAT="${HISTTIMEFORMAT:-"%Y-%m-%d %H:%M:%S"}: "
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER=${MANPAGER:-"less -X"}
