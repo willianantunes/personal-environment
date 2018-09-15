@@ -69,7 +69,6 @@ echo "<<<<<< Utility and must-have packages"
 sudo apt install -y -q vim \
     tree \
     gnome-disk-utility \
-    wireshark \
     curl \
     nmap \
     git \
@@ -78,7 +77,10 @@ sudo apt install -y -q vim \
     gdebi-core \
     build-essential libssl-dev \
     apt-transport-https ca-certificates curl software-properties-common
-    
+
+sudo apt install -y -q debconf-doc debconf-utils &&
+    sudo DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt install -yq wireshark
+
 systemManufacturer=`dmidecode -s system-manufacturer`
 
 if [[ $systemManufacturer=*"VMware"* ]] || [[ $systemManufacturer=*"VirtualBox"* ]]; then
