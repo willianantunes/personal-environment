@@ -107,10 +107,13 @@ ln -sv $TSURU_HOME $DEV_WORKSPACE_TOOLS/$TSURU_SHORTER_FILE_NAME
 
 echo "<<<<<< Java and tools depending on it"
 
-sudo apt install -y openjdk-8-jdk \
-    openjdk-11-jdk \
-    maven \
-    gradle
+curl -s "https://get.sdkman.io" | bash &&
+    source "/home/wantunes/.sdkman/bin/sdkman-init.sh"
+
+yes Y | sdk install java 8.0.181-oracle &&
+    sdk install java 10.0.2-open &&
+    sdk install maven 3.5.4 &&
+    sdk install gradle 4.10.1
 
 echo "<<< JMeter"
 
