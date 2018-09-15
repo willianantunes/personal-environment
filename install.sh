@@ -1,6 +1,6 @@
 #!/bin/bash 
 #######################################################
-# Description	 : My honest install script to 
+# Description    : My honest install script to
 #                  prepare my development environment
 # Author         : Willian Antunes
 # Know more at   : https://github.com/alrra/dotfiles
