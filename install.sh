@@ -76,6 +76,7 @@ sudo apt install -y -q vim \
     gimp \
     inkscape \
     gdebi-core \
+    build-essential libssl-dev \
     apt-transport-https ca-certificates curl software-properties-common
     
 systemManufacturer=`dmidecode -s system-manufacturer`
@@ -133,12 +134,11 @@ sudo sed -i "s/^assistive_technologies=/#&/" /etc/java-8-openjdk/accessibility.p
 
 ln -sv $JMETER_HOME $DEV_WORKSPACE_TOOLS/$JMETER_SHORTER_FILE_NAME
 
-echo "<<<<<< Node"
+echo "<<<<<< Node Version Manager"
 
-# https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup_8.x | -E bash -
-sudo apt-get install -y nodejs \
-    build-essential
+NVM_VERSION="v0.33.11"
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
 
 echo "<<<<<< Docker"
 
