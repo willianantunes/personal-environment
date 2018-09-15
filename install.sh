@@ -128,10 +128,6 @@ curl -O "http://mirror.nbtelecom.com.br/apache//jmeter/binaries/${JMETER_FILE_NA
     mv $JMETER_FILE_NAME $DEV_WORKSPACE_TOOLS &&
     rm -rf "${JMETER_FILE_NAME}"*
 
-# https://askubuntu.com/a/723503
-sudo sed -i "s/^assistive_technologies=/#&/" /etc/java-11-openjdk/accessibility.properties
-sudo sed -i "s/^assistive_technologies=/#&/" /etc/java-8-openjdk/accessibility.properties
-
 ln -sv $JMETER_HOME $DEV_WORKSPACE_TOOLS/$JMETER_SHORTER_FILE_NAME
 
 echo "<<<<<< Node Version Manager"
@@ -160,9 +156,5 @@ ln -sfv "$DOTFILES_DIR/runcom/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/runcom/.profile" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
-
-echo "<<<<<< Removing unwanted packages"
-
-sudo apt autoremove -y
 
 echo "<<<<<< That's it!"
