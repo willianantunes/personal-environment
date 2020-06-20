@@ -25,7 +25,7 @@ ask_for_sudo_as_needed
 
 echo "###### Refreshing repository index"
 
-apt-get update
+sudo apt-get update
 
 echo "###### Now doing the real thing!"
 
