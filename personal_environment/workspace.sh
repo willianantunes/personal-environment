@@ -13,5 +13,5 @@ function create_development_workspace() {
   $DEV_WORKSPACE_LABS $DEV_WORKSPACE_GIT_PERSONAL \
   $DEV_WORKSPACE_GIT_WORK $DEV_WORKSPACE_TMP
 
-  return $DEV_WORKSPACE_TOOLS
+  echo "$DEV_WORKSPACE_TOOLS"
 }

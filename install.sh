@@ -31,10 +31,10 @@ echo "###### Now doing the real thing!"
 
 install_must_have_packages
 create_development_workspace
-TOOLS_FOLDERS_RETURNED_BY_PREVIOUS_FUNCTION=$?
+DEV_WORKSPACE_TOOLS=$(create_development_workspace)
 do_stuff_for_virtual_machines
 install_basic_apps
-install_software_engineering_tools $TOOLS_FOLDERS_RETURNED_BY_PREVIOUS_FUNCTION
+install_software_engineering_tools $DEV_WORKSPACE_TOOLS
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 setup_dotfiles $DOTFILES_DIR
