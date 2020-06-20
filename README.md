@@ -8,6 +8,17 @@ This was tested on a Ubuntu 18.04 virtual machine. Follow the steps below to run
 If you want to test right away if it's OK the [`.exports`](system/.exports), try to run it from the following command below instead of restarting your session:
 
     source ~/.bash_profile
+    
+## Testing environment
+
+Save a snapshot, update your script and then execute:
+
+    git clone https://github.com/willianantunes/personal-environment.git && \
+    mv personal-environment ~/.dotfiles && cd ~/.dotfiles && \
+    git checkout YOUR-TESTING-BRANCH && cd .. && \
+    bash ~/.dotfiles/install.sh 2>&1 | tee -a ~/.dotfiles/install.log
+
+If something bad happens, return your snapshot, update your script and repeat the process.
 
 ## Next steps
 

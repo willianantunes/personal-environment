@@ -13,13 +13,13 @@
 #                  https://github.com/fredcamps/dev-env
 #######################################################
 
-source ./personal_environment/utils.sh
-source ./personal_environment/must_have_packages.sh
-source ./personal_environment/workspace.sh
-source ./personal_environment/specific_for_virtual_machine.sh
-source ./personal_environment/apps.sh
-source ./personal_environment/software_engineering_packages.sh
-source ./personal_environment/dotfiles.sh
+source .dotfiles/personal_environment/utils.sh
+source .dotfiles/personal_environment/must_have_packages.sh
+source .dotfiles/personal_environment/workspace.sh
+source .dotfiles/personal_environment/specific_for_virtual_machine.sh
+source .dotfiles/personal_environment/apps.sh
+source .dotfiles/personal_environment/software_engineering_packages.sh
+source .dotfiles/personal_environment/dotfiles.sh
 
 ask_for_sudo_as_needed
 
