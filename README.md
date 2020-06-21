@@ -28,3 +28,7 @@ I work with IntelliJ IDEA to do my daily job, so regarding it and other stuff:
 - Trigger IntelliJ IDEA Ultimate installation
 - Check if some stuff is installed or not to avoid errors
 - Use native helpers to avoid "reinvent the wheel" process
+
+## Useful links
+
+- [How to Fix ‘E: Could not get lock /var/lib/dpkg/lock’ Error in Ubuntu Linux](https://itsfoss.com/could-not-get-lock-error/)
