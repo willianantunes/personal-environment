@@ -81,6 +81,7 @@ function install_software_engineering_tools() {
   GITHUB_KEYFILE_FULL_PATH=$DEV_WORKSPACE_KEYS/$GITHUB_KEYFILE
   SSH_FOLDER=~/.ssh
   SSH_KEYCHAIN_CONFIG='Host github.com
+    IgnoreUnknown AddKeysToAgent,UseKeychain
     AddKeysToAgent yes
     UseKeychain yes
     IdentityFile '"$GITHUB_KEYFILE_FULL_PATH"''
@@ -93,7 +94,7 @@ function install_software_engineering_tools() {
   ssh-add -K $GITHUB_KEYFILE_FULL_PATH
 
   echo "<< Appending config to ssh-config file... Do not forget to copy your public key and fill it on GitHub page!"
-  echo $SSH_KEYCHAIN_CONFIG >>$SSH_FOLDER/config
+  echo "$SSH_KEYCHAIN_CONFIG" >>$SSH_FOLDER/config
 
   echo "<<< AWS - TODO"
   echo "<<< GCP - TODO"
