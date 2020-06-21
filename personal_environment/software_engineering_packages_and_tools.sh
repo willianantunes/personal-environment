@@ -4,9 +4,8 @@ function install_software_engineering_tools() {
   echo "<<< Java through SDKMAN"
 
   curl -s "https://get.sdkman.io" | bash &&
-    source $WHERE_AM_I/.sdkman/bin/sdkman-init.sh
+    source $HOME/.sdkman/bin/sdkman-init.sh
 
-  # it installs the latest stable version of your SDK
   yes Y | sdk install java
 
   echo "<<< JMeter"
@@ -25,33 +24,18 @@ function install_software_engineering_tools() {
 
   echo "<<< Python through pipenv"
 
-  ## Load pyenv automatically by adding
-  ## the following to ~/.bashrc:
-  #
-  #export PATH="/home/willianantunes/.pyenv/bin:$PATH"
-  #eval "$(pyenv init -)"
-  #eval "$(pyenv virtualenv-init -)"
-
   PYENV_VERSION="3.7.6"
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-  export PATH=$(echo $WHERE_AM_I)/.pyenv/bin:$PATH
+  export PATH=$HOME/.pyenv/bin:$PATH
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
   pyenv install $PYENV_VERSION
   pyenv versions
   pyenv global $PYENV_VERSION
-  SOURCE_STR="\\nexport PATH=\"${WHERE_AM_I}/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n"
-  command printf "${SOURCE_STR}" >> $WHERE_AM_I/.bashrc
+  SOURCE_STR="\\nexport PATH=\"${HOME}/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n"
+  command printf "${SOURCE_STR}" >>$HOME/.bashrc
 
   echo "<<<<<< Node through nvm"
-
-  #  nvm=> Appending nvm source string to /home/willianantunes/.bashrc
-  #=> Appending bash_completion source string to /home/willianantunes/.bashrc
-  #=> Close and reopen your terminal to start using nvm or run the following to use it now:
-  #
-  #export NVM_DIR="$HOME/.nvm"
-  #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
   NVM_VERSION="v0.35.3"
   curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
@@ -83,11 +67,35 @@ function install_software_engineering_tools() {
   curl -fsSL https://download.docker.com/linux/${VENDOR}/gpg | sudo apt-key add -
 
   sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/${VENDOR} ${CODENAME} stable"
+    "deb [arch=amd64] https://download.docker.com/linux/${VENDOR} ${CODENAME} stable"
   sudo apt update && sudo apt-cache policy docker-ce &&
     sudo apt install -y docker-ce &&
     sudo usermod -aG docker $USER &&
     echo "<<< Docker Compose" &&
     sudo curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose &&
     sudo chmod +x /usr/local/bin/docker-compose
+
+  echo "<<< Git"
+
+  GITHUB_KEYFILE="github"
+  GITHUB_KEYFILE_FULL_PATH=$DEV_WORKSPACE_KEYS/$GITHUB_KEYFILE
+  SSH_FOLDER=~/.ssh
+  SSH_KEYCHAIN_CONFIG='Host github.com
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile '"$GITHUB_KEYFILE_FULL_PATH"''
+
+  ssh-keygen -t rsa -b 4096 -C "willian.lima.antunes@gmail.com" -f $GITHUB_KEYFILE_FULL_PATH
+  echo "<< Starting the ssh-agent..."
+  eval "$(ssh-agent -s)"
+
+  echo "<< Adding the PRIVATE ssh-key to the ssh-agent"
+  ssh-add -K $GITHUB_KEYFILE_FULL_PATH
+
+  echo "<< Appending config to ssh-config file... Do not forget to copy your public key and fill it on GitHub page!"
+  echo $SSH_KEYCHAIN_CONFIG >>$SSH_FOLDER/config
+
+  echo "<<< AWS - TODO"
+  echo "<<< GCP - TODO"
+  echo "<<< Azure - TODO"
 }

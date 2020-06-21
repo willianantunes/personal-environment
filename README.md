@@ -26,6 +26,5 @@ I work with IntelliJ IDEA to do my daily job, so regarding it and other stuff:
 
 - Install Jetbrains Toolbox App
 - Trigger IntelliJ IDEA Ultimate installation
-- Install plugins for IDEA like BashSupport, Lombok Plugin and Maven Helper
-- Custom IDE configuration for IDEA
 - Check if some stuff is installed or not to avoid errors
+- Use native helpers to avoid "reinvent the wheel" process

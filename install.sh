@@ -14,7 +14,6 @@
 #######################################################
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WHERE_AM_I="$(pwd)"
 
 source $DOTFILES_DIR/personal_environment/settings.sh
 source $DOTFILES_DIR/personal_environment/utils.sh
@@ -22,7 +21,7 @@ source $DOTFILES_DIR/personal_environment/must_have_packages.sh
 source $DOTFILES_DIR/personal_environment/workspace.sh
 source $DOTFILES_DIR/personal_environment/specific_for_virtual_machine.sh
 source $DOTFILES_DIR/personal_environment/apps.sh
-source $DOTFILES_DIR/personal_environment/software_engineering_packages.sh
+source $DOTFILES_DIR/personal_environment/software_engineering_packages_and_tools.sh
 source $DOTFILES_DIR/personal_environment/dotfiles.sh
 
 ask_for_sudo_upfront
@@ -38,7 +37,6 @@ create_development_workspace
 do_stuff_for_virtual_machines
 install_basic_apps
 install_software_engineering_tools
-
-setup_dotfiles $DOTFILES_DIR
+setup_dotfiles
 
 echo "###### That's it!"
