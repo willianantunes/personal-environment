@@ -3,6 +3,7 @@ function install_basic_apps() {
 
   echo "<<< Chrome"
 
+  [ -f google-chrome-stable_current_amd64.deb ] && echo "No need to execute again" || \
   curl -OL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
     sudo gdebi --n google-chrome-stable_current_amd64.deb
 

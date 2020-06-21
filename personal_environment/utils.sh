@@ -1,4 +1,4 @@
-function ask_for_sudo_as_needed() { # https://github.com/alrra/dotfiles/blob/7311ef50b65495e89c7dd98fa927e5dfa5ee442b/src/os/utils.sh#L20
+function ask_for_sudo_upfront() { # https://github.com/alrra/dotfiles/blob/7311ef50b65495e89c7dd98fa927e5dfa5ee442b/src/os/utils.sh#L20
   # Ask for the administrator password upfront.
   sudo -v &>/dev/null
 
