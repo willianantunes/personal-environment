@@ -32,7 +32,7 @@ function install_software_engineering_tools() {
   pyenv install $PYENV_VERSION
   pyenv versions
   pyenv global $PYENV_VERSION
-  SOURCE_STR="\\nexport PATH=\"${HOME}/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n"
+  SOURCE_STR="\\nexport PATH=\"${HOME}/.pyenv/bin:\$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n"
   command printf "${SOURCE_STR}" >>$HOME/.bashrc
 
   echo "<<<<<< Node through nvm"
