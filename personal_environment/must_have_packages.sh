@@ -4,6 +4,7 @@ function install_must_have_packages() {
   sudo apt install -y -q vim \
   tree \
   nano \
+  xclip \
   gnome-disk-utility \
   gdebi-core \
   build-essential libssl-dev \
