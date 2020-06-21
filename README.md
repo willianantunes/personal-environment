@@ -1,6 +1,6 @@
 # Dotfiles for my personal work environment
 
-This was tested on a Ubuntu 18.04 virtual machine. Follow the steps below to run it:
+This was tested on a Ubuntu 20.04 virtual machine. Follow the steps below to run it:
 
     git clone https://github.com/willianantunes/personal-environment.git ~/.dotfiles
     bash ~/.dotfiles/install.sh 2>&1 | tee -a ~/.dotfiles/install.log
