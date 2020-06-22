@@ -96,7 +96,21 @@ function install_software_engineering_tools() {
   echo "<< Appending config to ssh-config file... Do not forget to copy your public key and fill it on GitHub page!"
   echo "$SSH_KEYCHAIN_CONFIG" >>$SSH_FOLDER/config
 
+  echo "<<< K8S"
+
+  cd $DEV_WORKSPACE_TOOLS && \
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl && \
+  -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+  chmod +x ./kubectl
+
   echo "<<< AWS - TODO"
+
+  yes | pip install awscli
+
+  cd $DEV_WORKSPACE_TOOLS && \
+  curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator && \
+  chmod +x ./aws-iam-authenticator
+
   echo "<<< GCP - TODO"
   echo "<<< Azure - TODO"
 }
