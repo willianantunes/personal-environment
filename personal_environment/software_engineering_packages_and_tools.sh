@@ -98,9 +98,9 @@ function install_software_engineering_tools() {
 
   echo "<<< K8S"
 
+  KUBECTL_STABLE_VERSION=`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`
   cd $DEV_WORKSPACE_TOOLS && \
-  curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl && \
-  -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_STABLE_VERSION/bin/linux/amd64/kubectl && \
   chmod +x ./kubectl
 
   echo "<<< AWS - TODO"
