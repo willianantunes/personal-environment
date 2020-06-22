@@ -17,7 +17,6 @@ export HISTTIMEFORMAT="${HISTTIMEFORMAT:-"%Y-%m-%d %H:%M:%S"}: "
 export MANPAGER=${MANPAGER:-"less -X"}
 
 DEV_WORKSPACE_TOOLS=~/Development/tools
-TSURU_HOME=`cd $DEV_WORKSPACE_TOOLS && pwd`/tsuru
 JMETER_HOME=`cd $DEV_WORKSPACE_TOOLS && pwd`/apache-jmeter
 
 export PATH=$PATH:${JMETER_HOME}/bin/:${TSURU_HOME}
