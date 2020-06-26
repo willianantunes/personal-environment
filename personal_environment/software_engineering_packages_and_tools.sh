@@ -57,6 +57,11 @@ function install_software_engineering_tools() {
   # https://docs.microsoft.com/en-us/dotnet/core/install/linux
   # https://dev.to/carlos487/installing-dotnet-core-in-ubuntu-20-04-6jh
 
+  DOTNET_CORE_PACKAGE_NAME="dotnet-sdk-3.1.105-linux-x64.tar.gz"
+  curl -LO https://download.visualstudio.microsoft.com/download/pr/37268c18-226d-436b-b13c-4b77b7f42140/17e8a85360206006a557d634d16713cd/$DOTNET_CORE_PACKAGE_NAME && \
+  mkdir $DEV_WORKSPACE_TOOLS/dotnet && \
+  tar zxf $DOTNET_CORE_PACKAGE_NAME -C $DEV_WORKSPACE_TOOLS/dotnet
+
   echo "<<< Docker"
 
   DOCKER_COMPOSE_VERSION="1.26.0"
