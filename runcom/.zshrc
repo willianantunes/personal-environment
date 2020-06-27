@@ -75,7 +75,7 @@ done
 # Add wisely, as too many plugins slow down shell startup.
 
 source $ZSH/oh-my-zsh.sh
-
+source $HOME/.zshrc.pre-oh-my-zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
