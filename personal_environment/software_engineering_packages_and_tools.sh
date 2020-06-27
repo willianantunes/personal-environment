@@ -128,4 +128,10 @@ function install_software_engineering_tools() {
   sudo apt-get update && sudo apt-get install google-cloud-sdk
 
   echo "<<< Azure - TODO"
+
+  echo "<<< Terraform"
+
+  TERRAFORM_VERSION="0.12.28"
+  git clone https://github.com/tfutils/tfenv.git $HOME/.tfenv
+  cd $HOME/.tfenv/bin && tfenv install $TERRAFORM_VERSION && tfenv use $TERRAFORM_VERSION
 }
