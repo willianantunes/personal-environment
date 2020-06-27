@@ -134,4 +134,9 @@ function install_software_engineering_tools() {
   TERRAFORM_VERSION="0.12.28"
   git clone https://github.com/tfutils/tfenv.git $HOME/.tfenv
   cd $HOME/.tfenv/bin && tfenv install $TERRAFORM_VERSION && tfenv use $TERRAFORM_VERSION
+
+  echo "<<< ZSH"
+
+  sudo apt install -y -q zsh && sudo chsh -s $(which zsh)
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 }

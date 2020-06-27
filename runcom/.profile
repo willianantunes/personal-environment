@@ -9,7 +9,7 @@ fi
 
 # Source the dotfiles
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{exports,aliases,functions,extra}; do
+for DOTFILE in $DOTFILES_DIR/system/.*; do
     [ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done
 

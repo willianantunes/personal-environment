@@ -3,6 +3,7 @@ function setup_dotfiles() {
 
   ln -sfv "$DOTFILES_DIR/runcom/.bash_profile" ~
   ln -sfv "$DOTFILES_DIR/runcom/.profile" ~
+  ln -sfv "$DOTFILES_DIR/runcom/.zshrc" ~
   ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
   ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
