@@ -26,17 +26,17 @@ source $DOTFILES_DIR/personal_environment/dotfiles.sh
 
 ask_for_sudo_upfront
 
-#echo "###### Refreshing repository index"
-#
-#sudo apt-get update
-#
-#echo "###### Now doing the real thing!"
-#
-#install_must_have_packages
-#create_development_workspace
-#do_stuff_for_virtual_machines
-#install_basic_apps
+echo "###### Refreshing repository index"
+
+sudo apt-get update
+
+echo "###### Now doing the real thing!"
+
+install_must_have_packages
+create_development_workspace
+do_stuff_for_virtual_machines
+install_basic_apps
 install_software_engineering_tools
-#setup_dotfiles
+setup_dotfiles
 
 echo "###### That's it!"
