@@ -127,7 +127,9 @@ function install_software_engineering_tools() {
   # Update the package list and install the Cloud SDK
   sudo apt-get update && sudo apt-get install google-cloud-sdk
 
-  echo "<<< Azure - TODO"
+  echo "<<< Azure"
+
+  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
   echo "<<< Terraform"
 
