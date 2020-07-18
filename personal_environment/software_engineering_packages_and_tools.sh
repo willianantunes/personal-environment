@@ -137,6 +137,12 @@ function install_software_engineering_tools() {
   git clone https://github.com/tfutils/tfenv.git $HOME/.tfenv
   cd $HOME/.tfenv/bin && export PATH=$PATH:$HOME/.tfenv/bin && tfenv install $TERRAFORM_VERSION && tfenv use $TERRAFORM_VERSION
 
+  echo "<<< NGROK"
+
+  cd $DEV_WORKSPACE_TOOLS && \
+  curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
+  unzip ngrok.zip && rm ngrok.zip && chmod +x ngrok
+
   echo "<<< ZSH"
 
   sudo apt install -y -q zsh && chsh -s $(which zsh)
