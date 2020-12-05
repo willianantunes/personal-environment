@@ -18,5 +18,5 @@ function install_basic_apps() {
 
   echo "<<< Networking"
 
-  sudo apt install -y -q nmap net-tools putty
+  sudo apt install -y -q nmap net-tools putty httpie
 }
