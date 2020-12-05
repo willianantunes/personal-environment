@@ -15,6 +15,8 @@ for DOTFILE in $DOTFILES_DIR/system/.*; do
     [ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done
 
+eval "$(rbenv init -)"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/

@@ -47,11 +47,15 @@ function install_software_engineering_tools() {
 
   # https://github.com/syndbg/goenv
 
-  echo "<<< Ruby through rbenv - TODO"
+  echo "<<< Ruby through rbenv"
 
-  # https://github.com/rbenv/rbenv
+  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  cd ~/.rbenv && src/configure && make -C src
+  ~/.rbenv/bin/rbenv init
+  mkdir -p "$(rbenv root)"/plugins
+  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 
-  echo "<<< Dotnet - TODO"
+  echo "<<< Dotnet"
 
   # https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
   # https://docs.microsoft.com/en-us/dotnet/core/install/linux
@@ -108,7 +112,7 @@ function install_software_engineering_tools() {
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_STABLE_VERSION/bin/linux/amd64/kubectl && \
   chmod +x ./kubectl
 
-  echo "<<< AWS - TODO"
+  echo "<<< AWS"
 
   yes | pip install awscli
 
@@ -116,7 +120,7 @@ function install_software_engineering_tools() {
   curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator && \
   chmod +x ./aws-iam-authenticator
 
-  echo "<<< GCP - TODO"
+  echo "<<< GCP"
 
   # Add the Cloud SDK distribution URI as a package source
   echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
