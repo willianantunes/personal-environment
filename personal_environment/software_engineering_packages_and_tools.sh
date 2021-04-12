@@ -24,7 +24,7 @@ function install_software_engineering_tools() {
 
   echo "<<< Python through pipenv"
 
-  PYENV_VERSION="3.7.6"
+  PYENV_VERSION="3.9.4"
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
   export PATH=$HOME/.pyenv/bin:$PATH
   eval "$(pyenv init -)"
