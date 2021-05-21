@@ -37,7 +37,7 @@ function install_software_engineering_tools() {
 
   echo "<<<<<< Node through nvm"
 
-  NVM_VERSION="v0.35.3"
+  NVM_VERSION="v0.38.0"
   curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
   NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -60,15 +60,14 @@ function install_software_engineering_tools() {
   # https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
   # https://docs.microsoft.com/en-us/dotnet/core/install/linux
   # https://dev.to/carlos487/installing-dotnet-core-in-ubuntu-20-04-6jh
+  # https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
 
-  DOTNET_CORE_PACKAGE_NAME="dotnet-sdk-3.1.105-linux-x64.tar.gz"
-  curl -LO https://download.visualstudio.microsoft.com/download/pr/37268c18-226d-436b-b13c-4b77b7f42140/17e8a85360206006a557d634d16713cd/$DOTNET_CORE_PACKAGE_NAME && \
-  mkdir $DEV_WORKSPACE_TOOLS/dotnet && \
-  tar zxf $DOTNET_CORE_PACKAGE_NAME -C $DEV_WORKSPACE_TOOLS/dotnet
+  sudo snap install dotnet-sdk --classic --channel=5.0
+  sudo snap alias dotnet-sdk.dotnet dotnet
 
   echo "<<< Docker"
 
-  DOCKER_COMPOSE_VERSION="1.26.0"
+  DOCKER_COMPOSE_VERSION="1.29.2"
 
   VENDOR="$(lsb_release -i | awk '{print $3}' | awk '{print tolower($0)}')"
   CODENAME="$(lsb_release -cs)"
@@ -117,7 +116,7 @@ function install_software_engineering_tools() {
   yes | pip install awscli
 
   cd $DEV_WORKSPACE_TOOLS && \
-  curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator && \
+  curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator && \
   chmod +x ./aws-iam-authenticator
 
   echo "<<< GCP"
@@ -137,7 +136,7 @@ function install_software_engineering_tools() {
 
   echo "<<< Terraform"
 
-  TERRAFORM_VERSION="0.12.28"
+  TERRAFORM_VERSION="0.15.4"
   git clone https://github.com/tfutils/tfenv.git $HOME/.tfenv
   cd $HOME/.tfenv/bin && export PATH=$PATH:$HOME/.tfenv/bin && tfenv install $TERRAFORM_VERSION && tfenv use $TERRAFORM_VERSION
 

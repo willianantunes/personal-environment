@@ -22,10 +22,5 @@ export PATH=$PATH:${DEV_WORKSPACE_TOOLS}
 JMETER_HOME=`cd $DEV_WORKSPACE_TOOLS && pwd`/apache-jmeter
 
 export PATH=$PATH:${JMETER_HOME}/bin
-export PATH=$PATH:${DEV_WORKSPACE_TOOLS}/dotnet
 export PATH=$PATH:$HOME/.tfenv/bin
 export PATH=$PATH:$HOME/.rbenv/bin
-export DOTNET_ROOT=${DEV_WORKSPACE_TOOLS}/dotnet
-export PATH="$PATH:/home/willianantunes/.dotnet/tools"
-
-
