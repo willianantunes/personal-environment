@@ -146,6 +146,13 @@ function install_software_engineering_tools() {
   curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
   unzip ngrok.zip && rm ngrok.zip && chmod +x ngrok
 
+  echo "<<< Bitcoin"
+
+  # https://bitcoin.org/en/download
+  # https://github.com/bitcoin/bitcoin/releases
+
+  sudo snap install bitcoin-core
+
   echo "<<< ZSH"
 
   sudo apt install -y -q zsh && chsh -s $(which zsh)
