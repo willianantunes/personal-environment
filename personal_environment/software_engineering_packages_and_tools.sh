@@ -10,7 +10,7 @@ function install_software_engineering_tools() {
 
   echo "<<< JMeter"
 
-  JMETER_VERSION="5.3"
+  JMETER_VERSION="5.4"
   JMETER_SHORTER_FILE_NAME="apache-jmeter"
   JMETER_FILE_NAME="${JMETER_SHORTER_FILE_NAME}-${JMETER_VERSION}"
   JMETER_HOME=$(cd $DEV_WORKSPACE_TOOLS && pwd)/$JMETER_FILE_NAME
@@ -38,7 +38,7 @@ function install_software_engineering_tools() {
   echo "<<<<<< Node through nvm"
 
   NVM_VERSION="v0.38.0"
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM_VERSION}/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh | bash
   NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   nvm install --lts
@@ -136,7 +136,7 @@ function install_software_engineering_tools() {
 
   echo "<<< Terraform"
 
-  TERRAFORM_VERSION="0.15.4"
+  TERRAFORM_VERSION="1.0.1"
   git clone https://github.com/tfutils/tfenv.git $HOME/.tfenv
   cd $HOME/.tfenv/bin && export PATH=$PATH:$HOME/.tfenv/bin && tfenv install $TERRAFORM_VERSION && tfenv use $TERRAFORM_VERSION
 
