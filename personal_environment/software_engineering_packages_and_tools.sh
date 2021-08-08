@@ -158,6 +158,11 @@ function install_software_engineering_tools() {
 
   sudo snap install bitcoin-core
 
+  echo "<<< Jetbrains"
+
+  # https://github.com/nagygergo/jetbrains-toolbox-install
+  curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | bash
+
   echo "<<< ZSH"
 
   sudo apt install -y -q zsh && chsh -s $(which zsh)
