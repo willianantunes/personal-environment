@@ -16,6 +16,12 @@ for DOTFILE in $DOTFILES_DIR/system/.*; do
 done
 
 eval "$(rbenv init -)"
+eval "$(goenv init -)"
+eval "$(pyenv init -)"
+
+# https://github.com/syndbg/goenv/blob/master/INSTALL.md
+export PATH=$GOROOT/bin:$PATH
+export PATH=$PATH:$GOPATH/bin
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

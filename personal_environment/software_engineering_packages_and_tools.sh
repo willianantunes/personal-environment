@@ -15,12 +15,12 @@ function install_software_engineering_tools() {
   JMETER_FILE_NAME="${JMETER_SHORTER_FILE_NAME}-${JMETER_VERSION}"
   JMETER_HOME=$(cd $DEV_WORKSPACE_TOOLS && pwd)/$JMETER_FILE_NAME
 
-  curl -O "http://mirror.nbtelecom.com.br/apache//jmeter/binaries/${JMETER_FILE_NAME}.tgz" &&
+  curl -O "https://ftp.unicamp.br/pub/apache/jmeter/binaries/${JMETER_FILE_NAME}.tgz" &&
     tar -xvzf ${JMETER_FILE_NAME}.tgz &&
     mv $JMETER_FILE_NAME $DEV_WORKSPACE_TOOLS &&
     rm -rf "${JMETER_FILE_NAME}"*
 
-  ln -sv $JMETER_HOME $DEV_WORKSPACE_TOOLS/$JMETER_SHORTER_FILE_NAME
+  ln --symbolic --verbose $JMETER_HOME $DEV_WORKSPACE_TOOLS/$JMETER_SHORTER_FILE_NAME
 
   echo "<<< Python through pipenv"
 
@@ -43,9 +43,14 @@ function install_software_engineering_tools() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   nvm install --lts
 
-  echo "<<< GO through goenv - TODO"
+  echo "<<< GO through goenv"
 
   # https://github.com/syndbg/goenv
+  git clone https://github.com/syndbg/goenv.git ~/.goenv
+  export GOENV_ROOT="$HOME/.goenv"
+  export PATH="$GOENV_ROOT/bin:$PATH"
+  eval "$(goenv init -)"
+  goenv install 1.16.6 && goenv global 1.16.6 && goenv rehash
 
   echo "<<< Ruby through rbenv"
 
