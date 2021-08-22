@@ -1,0 +1,5 @@
+# https://github.com/ohmyzsh/ohmyzsh/blob/190325049ef93731ab28295dbedf36d44ab33d7a/templates/zshrc.zsh-template
+
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# Check this out also: robbyrussell
+ZSH_THEME="avit"
