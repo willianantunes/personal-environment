@@ -1,0 +1,18 @@
+# It is supposed to work like ".bashrc". When you open a new Terminal, it is executed, but not when you log in
+
+# Source the dotfiles
+DOTFILES_DIR="$HOME/.dotfiles"
+for DOTFILE in "$DOTFILES_DIR"/src/custom/.run_{aliases,exports_interactive_shell,zsh_stuff}; do
+    [ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && \. "$DOTFILE";
+done
+
+[ -f "$ZSH/oh-my-zsh.sh" ] && \. "$ZSH/oh-my-zsh.sh";
+
+eval "$(goenv init -)"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
+
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

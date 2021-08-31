@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Usage: cat some-file-with-content.txt | pbcopy
 # Now you can CTRL+V the file's content 🙂
 alias pbcopy='xclip -selection clipboard'

@@ -1,0 +1,22 @@
+# It is supposed to work like ".profile". When you log in, it is executed, but not executed when you open a new terminal.
+# Interesting links:
+# - https://unix.stackexchange.com/a/129144
+# - https://superuser.com/a/187673
+# - https://stackoverflow.com/a/18187389
+# - https://unix.stackexchange.com/a/50667
+
+# Source the dotfiles
+DOTFILES_DIR="$HOME/.dotfiles"
+for DOTFILE in $DOTFILES_DIR/src/custom/.run_{exports_every_login,}; do
+    [ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && \. "$DOTFILE";
+done
+
+# Because some packages that I installed...
+eval "$(pyenv init -)"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
