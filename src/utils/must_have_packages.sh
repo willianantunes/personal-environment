@@ -107,3 +107,9 @@ echo "<<<<<< Install Azure CLI"
 
 echo "<<<<<< Install OpenVPN"
 "${APT_GET_INSTALL[@]}" openvpn3
+
+echo "<<<<<< Install Steampipe CLI"
+# https://steampipe.io/docs
+"${CURL[@]}" "https://github.com/turbot/steampipe/releases/download/v0.7.3/steampipe_$(uname -s)_amd64.tar.gz" | tar xz
+sudo install -o root -g root -m 0755 steampipe /usr/local/bin/steampipe
+rm steampipe
