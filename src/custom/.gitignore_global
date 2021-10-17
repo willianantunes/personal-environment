@@ -2,3 +2,17 @@
 .vscode
 .vagrant
 out
+*.zip
+
+node_modules
+.cache
+dist
+
+.pytest_cache
+
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+*.gpg
