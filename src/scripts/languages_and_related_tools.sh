@@ -76,7 +76,15 @@ sudo snap alias dotnet-sdk.dotnet dotnet
 echo "<<<<<< Install Bitcoin"
 # https://bitcoin.org/en/download
 # https://github.com/bitcoin/bitcoin/releases
-sudo snap install bitcoin-core
+# https://bitcoin.org/en/full-node#linux-instructions
+# https://en.bitcoin.it/wiki/Bitcoin_Core
+# https://github.com/bitcoin/bitcoin/blob/3bf40d06a22ee1c547d2924d109b8e185ddbf5ef/doc/bitcoin-conf.md
+# sha256sum bitcoin-0.21.1-x86_64-linux-gnu.tar.gz
+# cat SHA256SUMS.asc | grep bitcoin-0.21.1-x86_64-linux-gnu.tar.gz
+BITCOIN_CORE_VERSION="0.21.1"
+"${CURL[@]}" "https://bitcoin.org/bin/bitcoin-core-${BITCOIN_CORE_VERSION}/bitcoin-${BITCOIN_CORE_VERSION}-x86_64-linux-gnu.tar.gz" | tar xz
+sudo install -m 0755 -o root -g root -t /usr/local/bin/ bitcoin-0.20.1/bin/*
+rm -rf bitcoin*
 
 echo "<<<<<< Install zsh and ohmyzsh"
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
