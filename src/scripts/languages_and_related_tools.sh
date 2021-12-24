@@ -74,6 +74,7 @@ sudo snap install dotnet-sdk --classic --channel=5.0
 sudo snap alias dotnet-sdk.dotnet dotnet
 
 echo "<<<<<< Install Bitcoin"
+# https://bitcoincore.org/bin/
 # https://bitcoin.org/en/download
 # https://github.com/bitcoin/bitcoin/releases
 # https://bitcoin.org/en/full-node#linux-instructions
@@ -83,8 +84,19 @@ echo "<<<<<< Install Bitcoin"
 # cat SHA256SUMS.asc | grep bitcoin-0.21.1-x86_64-linux-gnu.tar.gz
 BITCOIN_CORE_VERSION="0.21.1"
 "${CURL[@]}" "https://bitcoin.org/bin/bitcoin-core-${BITCOIN_CORE_VERSION}/bitcoin-${BITCOIN_CORE_VERSION}-x86_64-linux-gnu.tar.gz" | tar xz
-sudo install -m 0755 -o root -g root -t /usr/local/bin/ bitcoin-0.20.1/bin/*
+sudo install -m 0755 -o root -g root -t /usr/local/bin/ bitcoin-${BITCOIN_CORE_VERSION}/bin/*
 rm -rf bitcoin*
+
+echo "<<<<<< TODO: Install Geth (Ethereum)"
+# https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-ubuntu-via-ppas
+# https://geth.ethereum.org/docs/install-and-build/installing-geth#run-inside-docker-container
+# https://ethereum.org/en/developers/tutorials/run-light-node-geth/
+# https://youtu.be/ftS-SlzCCn4
+# https://sideofburritos.com/blog/how-to-securely-setup-an-ethereum-node/
+# How you can easily see all the options available with Docker: "docker run --rm -it -p 30303:30303 ethereum/client-go:stable --help"
+# Entering the container to explore things: "docker run --entrypoint /bin/sh --rm -it -p 30303:30303 ethereum/client-go:stable"
+# If you'd like to run the compose service provided by me: mkdir eth | "USER=$(id -u) GROUP=$(id -g) docker-compose up"
+# Then you can enter int the container and interact with Geth: "docker exec -it dotfiles_ethereum-geth_1 geth attach --datadir /home/aladdin/.ethereum"
 
 echo "<<<<<< Install zsh and ohmyzsh"
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH

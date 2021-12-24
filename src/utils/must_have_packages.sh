@@ -113,3 +113,8 @@ echo "<<<<<< Install Steampipe CLI"
 "${CURL[@]}" "https://github.com/turbot/steampipe/releases/download/v0.7.3/steampipe_$(uname -s)_amd64.tar.gz" | tar xz
 sudo install -o root -g root -m 0755 steampipe /usr/local/bin/steampipe
 rm steampipe
+
+echo "<<<<<< Install Auth0 CLI"
+"${CURL[@]}" https://github.com/auth0/auth0-cli/releases/download/v0.11.0/auth0-cli_0.11.0_Linux_x86_64.tar.gz | tar xz
+sudo install -o root -g root -m 0755 auth0 /usr/local/bin/auth0
+rm auth0
