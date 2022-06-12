@@ -1,6 +1,6 @@
 ARG CUSTOM_USER=aladdin
 
-FROM ethereum/client-go:stable
+FROM ethereum/client-go:v1.10.18
 
 ARG CUSTOM_USER
 
