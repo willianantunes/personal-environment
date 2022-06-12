@@ -57,6 +57,8 @@ ssh-keygen -t rsa -b 4096 -C "$MY_PROVIDED_EMAIL" -f $GITHUB_KEYFILE_FULL_PATH -
 echo "$SSH_KEYCHAIN_CONFIG" >> $SSH_FOLDER/config
 
 echo "<<<<<< JMeter"
+# https://www.blazemeter.com/blog/how-install-jmeter-plugins-manager?utm_source=blog&utm_medium=BM_blog&utm_campaign=jmeters-redis-data-set-an-introduction
+# https://jmeter-plugins.org/install/Install/
 JMETER_VERSION="5.4"
 JMETER_SHORTER_FILE_NAME=apache-jmeter
 JMETER_FILE_NAME="$JMETER_SHORTER_FILE_NAME-$JMETER_VERSION"
@@ -70,8 +72,18 @@ ln --symbolic --verbose $JMETER_HOME $DEV_WORKSPACE_TOOLS/$JMETER_SHORTER_FILE_N
 echo "<<<<<< Install Dotnet"
 # https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
 # https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
-sudo snap install dotnet-sdk --classic --channel=5.0
-sudo snap alias dotnet-sdk.dotnet dotnet
+# sudo snap install dotnet-sdk --classic --channel=5.0
+# sudo snap alias dotnet-sdk.dotnet dotnet
+# https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-install-script
+"${CURL[@]}" -o dotnet-install.sh "https://dot.net/v1/dotnet-install.sh"
+chmod +x dotnet-install.sh
+./dotnet-install.sh  --channel LTS --architecture x64
+mkdir ~/bin/
+ln -s "$HOME/.dotnet/dotnet" ~/bin/dotnet
+rm ./dotnet-install.sh
+# Sample commands:
+# ./dotnet-install.sh  --channel 2.2 --architecture x64 --dry-run
+# ./dotnet-install.sh  --channel 5.0 --architecture x64 --dry-run
 
 echo "<<<<<< Install Bitcoin"
 # https://bitcoincore.org/bin/
@@ -87,16 +99,8 @@ BITCOIN_CORE_VERSION="0.21.1"
 sudo install -m 0755 -o root -g root -t /usr/local/bin/ bitcoin-${BITCOIN_CORE_VERSION}/bin/*
 rm -rf bitcoin*
 
-echo "<<<<<< TODO: Install Geth (Ethereum)"
-# https://geth.ethereum.org/docs/install-and-build/installing-geth#install-on-ubuntu-via-ppas
-# https://geth.ethereum.org/docs/install-and-build/installing-geth#run-inside-docker-container
-# https://ethereum.org/en/developers/tutorials/run-light-node-geth/
-# https://youtu.be/ftS-SlzCCn4
-# https://sideofburritos.com/blog/how-to-securely-setup-an-ethereum-node/
-# How you can easily see all the options available with Docker: "docker run --rm -it -p 30303:30303 ethereum/client-go:stable --help"
-# Entering the container to explore things: "docker run --entrypoint /bin/sh --rm -it -p 30303:30303 ethereum/client-go:stable"
-# If you'd like to run the compose service provided by me: mkdir eth | "USER=$(id -u) GROUP=$(id -g) docker-compose up"
-# Then you can enter int the container and interact with Geth: "docker exec -it dotfiles_ethereum-geth_1 geth attach --datadir /home/aladdin/.ethereum"
+echo "<<<<<< Geth (Ethereum)"
+# https://www.willianantunes.com/blog/2021/12/how-to-set-up-an-ethereum-node-with-light-mode-using-docker/
 
 echo "<<<<<< Install zsh and ohmyzsh"
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
@@ -104,3 +108,7 @@ echo "<<<<<< Install zsh and ohmyzsh"
 "${APT_GET_INSTALL[@]}" zsh
 sudo chsh -s $(which zsh) $(whoami)
 git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+
+echo "<<<<<< Install Poetry"
+# https://python-poetry.org/docs/#installation
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
