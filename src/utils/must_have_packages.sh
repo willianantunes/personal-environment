@@ -65,6 +65,7 @@ sudo "${CURL[@]}" -o /usr/local/bin/docker-compose "https://github.com/docker/co
 sudo chmod +x /usr/local/bin/docker-compose
 
 echo "<<<<<< Install kubectl"
+# sudo "${CURL[@]}" -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.22.6/2022-03-09/bin/linux/amd64/kubectl
 sudo "${CURL[@]}" -o kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 rm kubectl
@@ -85,8 +86,8 @@ echo "<<<<<< Install Helm 3"
 "${CURL[@]}" https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | sudo -E bash -
 
 echo "<<<<<< Install ngrok"
-curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok.zip && rm ngrok.zip
+"${CURL[@]}" -o ngrok.tgz "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz"
+tar xvzf ngrok.tgz
 sudo install -o root -g root -m 0755 ngrok /usr/local/bin/ngrok
 rm ngrok
 
@@ -110,11 +111,14 @@ echo "<<<<<< Install OpenVPN"
 
 echo "<<<<<< Install Steampipe CLI"
 # https://steampipe.io/docs
-"${CURL[@]}" "https://github.com/turbot/steampipe/releases/download/v0.7.3/steampipe_$(uname -s)_amd64.tar.gz" | tar xz
+"${CURL[@]}" "https://github.com/turbot/steampipe/releases/download/v0.13.1/steampipe_$(uname -s)_amd64.tar.gz" | tar xz
 sudo install -o root -g root -m 0755 steampipe /usr/local/bin/steampipe
 rm steampipe
 
 echo "<<<<<< Install Auth0 CLI"
-"${CURL[@]}" https://github.com/auth0/auth0-cli/releases/download/v0.11.0/auth0-cli_0.11.0_Linux_x86_64.tar.gz | tar xz
+# "Auth0 CLI is the command line to supercharge your development workflow"
+auth0_cli_version=$("${CURL[@]}" https://api.github.com/repos/auth0/auth0-cli/releases/latest | jq .tag_name -er)
+auth0_cli_version_without_v=$(cut -c2- <<< $auth0_cli_version)
+"${CURL[@]}" "https://github.com/auth0/auth0-cli/releases/download/${auth0_cli_version}/auth0-cli_${auth0_cli_version_without_v}_Linux_x86_64.tar.gz" | tar xz
 sudo install -o root -g root -m 0755 auth0 /usr/local/bin/auth0
 rm auth0
