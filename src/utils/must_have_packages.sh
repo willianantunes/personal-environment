@@ -77,6 +77,17 @@ version=$("${CURL[@]}" https://api.github.com/repos/derailed/k9s/releases/latest
 sudo install -o root -g root -m 0755 k9s /usr/local/bin/k9s
 rm LICENSE README.md k9s
 
+echo "<<<<<< Install Krew"
+(
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+  ./"${KREW}" install krew
+)
+
 echo "<<<<<< Install KinD"
 version=$("${CURL[@]}" https://api.github.com/repos/kubernetes-sigs/kind/releases/latest | jq .tag_name -er)
 sudo "${CURL[@]}" -o /usr/local/bin/kind "https://github.com/kubernetes-sigs/kind/releases/download/${version}/kind-$(uname -s)-amd64"
