@@ -73,7 +73,7 @@ rm kubectl
 echo "<<<<<< Install k9s"
 # https://k9scli.io/topics/commands/
 version=$("${CURL[@]}" https://api.github.com/repos/derailed/k9s/releases/latest | jq .tag_name -er)
-"${CURL[@]}" "https://github.com/derailed/k9s/releases/download/${version}/k9s_$(uname -s)_$(uname -i).tar.gz" | tar xz
+"${CURL[@]}" "https://github.com/derailed/k9s/releases/download/${version}/k9s_Linux_amd64.tar.gz" | tar xz
 sudo install -o root -g root -m 0755 k9s /usr/local/bin/k9s
 rm LICENSE README.md k9s
 
@@ -133,3 +133,14 @@ auth0_cli_version_without_v=$(cut -c2- <<< $auth0_cli_version)
 "${CURL[@]}" "https://github.com/auth0/auth0-cli/releases/download/${auth0_cli_version}/auth0-cli_${auth0_cli_version_without_v}_Linux_x86_64.tar.gz" | tar xz
 sudo install -o root -g root -m 0755 auth0 /usr/local/bin/auth0
 rm auth0
+
+echo "<<<<<< Install Akamai CLI"
+akamai_cli_version=$("${CURL[@]}" https://api.github.com/repos/akamai/cli/releases/latest | jq .tag_name -er)
+sudo "${CURL[@]}" -o /usr/local/bin/akamai "https://github.com/akamai/cli/releases/download/${akamai_cli_version}/akamai-${akamai_cli_version}-linuxamd64"
+sudo chmod +x /usr/local/bin/akamai
+
+echo "<<<<<< Install Terragrunt"
+terragrunt_version=$("${CURL[@]}" https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | jq .tag_name -er)
+"${CURL[@]}" -o terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/${terragrunt_version}/terragrunt_linux_amd64"
+chmod u+x terragrunt
+install terragrunt ~/.local/bin

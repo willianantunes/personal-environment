@@ -24,5 +24,5 @@ fi
 # Custom setup
 eval "$(pyenv init --path)"
 eval "$(rbenv init - bash)"
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # End of Custom setup

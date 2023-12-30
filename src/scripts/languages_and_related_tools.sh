@@ -82,8 +82,9 @@ mkdir ~/bin/
 ln -s "$HOME/.dotnet/dotnet" ~/bin/dotnet
 rm ./dotnet-install.sh
 # Sample commands:
-# ./dotnet-install.sh  --channel 2.2 --architecture x64 --dry-run
-# ./dotnet-install.sh  --channel 5.0 --architecture x64 --dry-run
+# ./dotnet-install.sh --channel 2.2 --architecture x64 --dry-run
+# ./dotnet-install.sh --channel 5.0 --architecture x64 --dry-run
+# ./dotnet-install.sh --channel 7.0 --architecture x64 --dry-run
 
 echo "<<<<<< Install Bitcoin"
 # https://bitcoincore.org/bin/
@@ -111,4 +112,4 @@ git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
 echo "<<<<<< Install Poetry"
 # https://python-poetry.org/docs/#installation
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+curl -sSL https://install.python-poetry.org | python3 -
