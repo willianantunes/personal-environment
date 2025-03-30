@@ -47,11 +47,17 @@ echo "<<<<<< Install sdkman (The Software Development Kit Manager)"
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
 
 echo "<<<<<< Generate SSH keys"
-GITHUB_KEYFILE="github"
+# https://gist.github.com/bonnopc/c78920431284ce3fc2a5270016205116
+# https://stackoverflow.com/questions/29023532/how-do-i-use-multiple-ssh-keys-on-github/77500776#77500776
+# https://stackoverflow.com/a/77500776
+# https://gist.github.com/bonnopc/c78920431284ce3fc2a5270016205116
+GITHUB_KEYFILE="willianantunes_github"
 GITHUB_KEYFILE_FULL_PATH=$DEV_WORKSPACE_KEYS/$GITHUB_KEYFILE
 SSH_FOLDER=~/.ssh
 SSH_KEYCHAIN_CONFIG='Host github.com
-    AddKeysToAgent yes
+    HostName github.com
+    IdentitiesOnly yes
+    # LogLevel DEBUG3
     IdentityFile '"$GITHUB_KEYFILE_FULL_PATH"''
 ssh-keygen -t rsa -b 4096 -C "$MY_PROVIDED_EMAIL" -f $GITHUB_KEYFILE_FULL_PATH -P "$MY_PROVIDED_PASSPHRASE"
 echo "$SSH_KEYCHAIN_CONFIG" >> $SSH_FOLDER/config
@@ -85,6 +91,7 @@ rm ./dotnet-install.sh
 # ./dotnet-install.sh --channel 2.2 --architecture x64 --dry-run
 # ./dotnet-install.sh --channel 5.0 --architecture x64 --dry-run
 # ./dotnet-install.sh --channel 7.0 --architecture x64 --dry-run
+# ./dotnet-install.sh --channel 8.0 --architecture x64 --dry-run
 
 echo "<<<<<< Install Bitcoin"
 # https://bitcoincore.org/bin/

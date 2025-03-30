@@ -144,3 +144,9 @@ terragrunt_version=$("${CURL[@]}" https://api.github.com/repos/gruntwork-io/terr
 "${CURL[@]}" -o terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/${terragrunt_version}/terragrunt_linux_amd64"
 chmod u+x terragrunt
 install terragrunt ~/.local/bin
+
+echo "<<<<<< Install cert-manager command line tool"
+cmctl_version=$("${CURL[@]}" https://api.github.com/repos/cert-manager/cert-manager/releases/latest | jq .tag_name -er)
+"${CURL[@]}" "https://github.com/cert-manager/cert-manager/releases/download/${cmctl_version}/cmctl-linux-amd64.tar.gz" | tar xz
+install cmctl ~/.local/bin
+rm LICENSE cmctl
