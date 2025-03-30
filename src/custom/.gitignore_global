@@ -64,3 +64,5 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+tests-reports
+test-reports

@@ -5,10 +5,6 @@
 [github]
     user = willianantunes
 
-[credential]
-    # Cache the password for http-auth
-    helper = cache
-
 [core]
     excludesfile = ~/.gitignore_global
     autocrlf = input
