@@ -66,3 +66,8 @@ msbuild.err
 msbuild.wrn
 tests-reports
 test-reports
+.claude/rules/shared
+.claude/agents/shared
+.claude/settings.local.json
+prompts
+test_workdir
